@@ -1,4 +1,4 @@
-# YO IS BETER
+# YO IS BETER yum
 def reset():
     global board_spaces, whose_turn_is_it,  game_is_still_playing
     board_spaces = [0,4,4,4,4,4,4,0,4,4,4,4,4,4]
