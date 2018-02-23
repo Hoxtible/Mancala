@@ -47,7 +47,7 @@ def p1_ply():
     # by the time we get here, the variable "which_bin" holds a legal move - which bin the player wants.
 
 
-    # TODO: #1:
+
     global board_spaces
     #    The player has chosen a legal move - a number stored in the variable "which_bin." Put the number of
     #       chips in this space on the board into a new variable, "num_chips_to_distribute," and then empty this space on
@@ -62,13 +62,11 @@ def p1_ply():
     if final_bin > 13:
         final_bin = final_bin - 14
     while num_chips_to_distribute > 0:
-        # TODO: #2:
         drop_location = drop_location + 1
         # Increment the drop_location; if we get to 14, reset it to zero.
         # (Hint: you can do the "14 check" with an "if" statement or use a "%" trick.)
         if drop_location >= 14:
             drop_location = 0
-        # TODO: #3:
         #   If drop_location is not on the opponent's scoring space, add one chip to this board space, and
         #   reduce num_chips_to_distribute by 1.
 
@@ -79,8 +77,6 @@ def p1_ply():
 
 
     # ----- after the while loop....
-    # TODO: #4:  Implements rules #07 & #08. Skip this and come back to it, if you are intimidated.
-        # TODO: #4.1:
         # Check whether the drop_location wound up on Player 1's side of the board.
             if drop_location > 0 and drop_location < 7:
                 if board_spaces[drop_location] == 1:
@@ -92,28 +88,7 @@ def p1_ply():
                     board_spaces[opposite_bin] = 0
     if final_bin == 7:
         return True
-
-
-
-            #   TODO: #4.2:
-        #   If so:
-                # check whether there is now exactly one chip in the drop_location - that means it was previously empty.
-                #TODO: #4.3:
-                # If it was previously empty and it isn't player 1's scoring goal, then
-                #   TODO: #4.4:
-                #   a) add this chip to the P1 scoring goal,
-                #   b) remove the chip from the drop_location,
-                #   c) Figure out what the opposite bin is from the one where drop_location wound up and put this number into
-                #       a new variable, "opposite_bin."
-                #       Note: there is a mathematical pattern between each bin and it's opposite. Can you figure it out?
-                #   d) find out how many chips are in the opposite_bin space and put them in scoring zone
-                #   e) remove the chips from the opposite_bin space
-            # TODO: #4.5:
-            # return True - since we have landed on Player 1's side. - Player 1 gets to move again.
-            # Note: this happens if the drop_location wound up on Player 1's side, regardless of whether there was one
-            #       chip. Set the indentation of this line accordingly!
-
-    return False  # otherwise - if we wound up other than on player 1's side of board. - Now it will be Player 2's turn.
+    return False
 
 def p2_ply():
     good_answer = False
@@ -127,34 +102,22 @@ def p2_ply():
         except ValueError:
             print("That was not a number. Please try again.")
 
-            # by the time we get here, the variable "which_bin" holds a legal move - which bin the player wants.
-
-
-            # TODO: #5:
     global board_spaces
-    #       The player has chosen a legal move - a number stored in the variable "which_bin." Put the number of
-    #       chips in this space on the board into a new variable, "num_chips_to_distribute," and then empty this space on
-    #       the board.
+
     num_chips_to_distribute = board_spaces[which_bin]
     board_spaces[which_bin] = 0
 
-    # REPLACE THIS TEMPORARY LINE! If you leave this here, the program won't work.
 
-    drop_location = which_bin  # this is the variable that we will use to drop 1 chip each in several spaces.
+    drop_location = which_bin
     final_bin = num_chips_to_distribute + which_bin
     if final_bin > 13:
         final_bin = final_bin - 14
     while num_chips_to_distribute > 0:
 
-        # TODO: #6:
         drop_location = drop_location + 1
-        # Increment the drop_location; if we get to 14, reset it to zero.
-        # (Hint: you can do the "14 check" with an "if" statement or use a "%" trick.)
+
         if drop_location >= 14:
            drop_location = 0
-        # TODO: #7:
-        #   If drop_location is not on the opponent's scoring space, add one chip to this board space, and
-        #   reduce num_chips_to_distribute by 1.
 
         if drop_location != 7:
             board_spaces[drop_location] = board_spaces[drop_location] + 1
@@ -171,7 +134,7 @@ def p2_ply():
     if final_bin == 0:
         return True
 
-    return False  # otherwise - if we wound up other than on player 2's side of board. - Now it will be Player 1's turn.
+    return False
 def p1_space_counter_machine():
     global board_spaces
     l = 0
@@ -196,13 +159,12 @@ def check_for_game_over():
     sum_of_p1_spaces = 0
     sum_of_p2_spaces = 0
 
-    # TODO: #9: Find the sum of all the chips stored in spaces 1-6 and put it into "sum_of_p1_spaces."
+
 
     sum_of_p1_spaces = p1_space_counter_machine()
     sum_of_p2_spaces = p2_space_counter_machine()
 
-    # TODO: #10: Find the sum of all the chips stored in spaces 8-13 and put it into "sum_of_p2_spaces."
-    # you can do this by brute force or use a loop.
+
 
     if sum_of_p1_spaces == 0:
         return True
@@ -222,17 +184,13 @@ def give_players_pieces_on_their_side_of_the_board():
     sum_of_p1_spaces = 0
     sum_of_p2_spaces = 0
 
-    # TODO: #11: Find the sum of all the chips stored in spaces 1-6 and put it into sum_of_p1_spaces. Then put that number of chips into player 1's goal bin.
-    # you can do this by brute force or use a loop.
+
     for b in range(1,6):
         board_spaces[7] = board_spaces[7] + board_spaces[b]
 
-    # TODO: #12: Find the sum of all the chips stored in spaces 8-13 and put it into sum_of_p2_spaces. Then put that number of chips into player 2's goal bin.
     for k in range(8, 13):
         board_spaces[7] = board_spaces[7] + board_spaces[k]
 
-
-        # TODO: #13: Empty all the bins 1-6 and 8-13.
     for woah in range(1, 13):
         if woah != 7:
             board_spaces[woah] = 0
@@ -270,7 +228,6 @@ def main():
     draw_board()
     print ("Game over.")
 
-    # TODO: #14: Look at the number of chips stored in spaces 7 and 0 in our board_spaces list - use this to indicate who won or if it is a draw.
 
 
 # =============================  Game Starts here. =====================================
