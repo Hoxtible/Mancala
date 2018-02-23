@@ -58,7 +58,9 @@ def p1_ply():
     # REPLACE THIS TEMPORARY LINE! If you leave this here, the program won't work.
 
     drop_location = which_bin  # this is the variable that we will use to drop 1 chip each in several spaces.
-
+    final_bin = num_chips_to_distribute + which_bin
+    if final_bin > 13:
+        final_bin = final_bin - 14
     while num_chips_to_distribute > 0:
         # TODO: #2:
         drop_location = drop_location + 1
@@ -88,7 +90,8 @@ def p1_ply():
                     opposite_bin_amount = board_spaces[opposite_bin]
                     board_spaces[7] = board_spaces[7] + opposite_bin_amount
                     board_spaces[opposite_bin] = 0
-
+    if final_bin == 7:
+        return True
 
 
 
@@ -138,7 +141,9 @@ def p2_ply():
     # REPLACE THIS TEMPORARY LINE! If you leave this here, the program won't work.
 
     drop_location = which_bin  # this is the variable that we will use to drop 1 chip each in several spaces.
-
+    final_bin = num_chips_to_distribute + which_bin
+    if final_bin > 13:
+        final_bin = final_bin - 14
     while num_chips_to_distribute > 0:
 
         # TODO: #6:
@@ -162,8 +167,9 @@ def p2_ply():
                     opposite_bin_amount = board_spaces[opposite_bin]
                     board_spaces[7] = board_spaces[7] + opposite_bin_amount
                     board_spaces[opposite_bin] = 0
-        if drop_location == 6 and num_chips_to_distribute == 1:
-            return True
+
+    if final_bin == 0:
+        return True
 
     return False  # otherwise - if we wound up other than on player 2's side of board. - Now it will be Player 1's turn.
 def p1_space_counter_machine():
