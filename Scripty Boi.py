@@ -140,6 +140,7 @@ def p2_ply():
     drop_location = which_bin  # this is the variable that we will use to drop 1 chip each in several spaces.
 
     while num_chips_to_distribute > 0:
+
         # TODO: #6:
         drop_location = drop_location + 1
         # Increment the drop_location; if we get to 14, reset it to zero.
@@ -153,13 +154,6 @@ def p2_ply():
         if drop_location != 7:
             board_spaces[drop_location] = board_spaces[drop_location] + 1
             num_chips_to_distribute = num_chips_to_distribute - 1
-
-
-
-            # ----- after the while loop....
-        # TODO: #8: Implements rules #07 & #08. Skip this and come back to it, if you are intimidated.
-        # TODO: #8.1:
-        # Check whether the drop_location wound up on Player 2's side of the board.
             if drop_location > 7 and drop_location < 14:
                 if board_spaces[drop_location] == 1:
                     board_spaces[7] = board_spaces[7] + 1
@@ -168,23 +162,8 @@ def p2_ply():
                     opposite_bin_amount = board_spaces[opposite_bin]
                     board_spaces[7] = board_spaces[7] + opposite_bin_amount
                     board_spaces[opposite_bin] = 0
-
-        #   TODO: #8.2:
-        #   If so: check whether there is now exactly one chip in the drop_location - that means it was previously empty.
-        #       TODO: #8.3:
-        #       If it was previously empty and it isn't player 2's scoring goal, then
-                #   TODO: #8.4:
-                #   a) add this chip to the P2 scoring goal,
-                #   b) remove the chip from the drop_location,
-                #   c) Figure out what the opposite bin is from the one where drop_location wound up and put this number into
-                #       a new variable, "opposite_bin."
-                #       Note: there is a mathematical pattern between each bin and it's opposite. Can you figure it out?
-                #   d) find out how many chips are in the opposite_bin space and put them in scoring zone
-                #   e) remove the chips from the opposite_bin space
-            # TODO: #8.5:
-            # return True - since we have landed on Player 2's side. - Player 2 gets to move again.
-            # Note: this happens if the drop_location wound up on Player 2's side, regardless of whether there was one
-            #       chip. Set the indentation of this line accordingly!
+        if drop_location == 6 and num_chips_to_distribute == 1:
+            return True
 
     return False  # otherwise - if we wound up other than on player 2's side of board. - Now it will be Player 1's turn.
 def p1_space_counter_machine():
