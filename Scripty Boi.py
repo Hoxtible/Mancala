@@ -15,7 +15,7 @@ def draw_board():
     #      formatting info - it says that we want an integer (the "d" - don't ask me why) that is at least two characters
     #      wide. If it is a single digit number, put a space in front of it. This will ensure that our boxes will look
     #      right, whether they hold single or double digit numbers!
-    print("") # blank line
+    print("\033[1;37;0m") # blank line
     print(" P2  13  12  11  10   9   8  ")
     print("+---+---+---+---+---+---+---+---+")
     print("|   |{0:2d} |{1:2d} |{2:2d} |{3:2d} |{4:2d} |{5:2d} |   |".format(board_spaces[13],board_spaces[12],\
@@ -95,18 +95,23 @@ def p1_ply():
     return False
 
 def p2_ply():
+    global board_spaces
     good_answer = False
     while not good_answer:
         try:
             which_bin = int(input("Player 2, which which_bin do you want, 8-13? "))
             if which_bin > 7 and which_bin < 14:
                 good_answer = True
+                if board_spaces[which_bin] != 0:
+                    good_answer = True
+                else:
+                    print("That bin has no chips in it")
             else:
                 print("That is not a legal move.")
         except ValueError:
             print("That was not a number. Please try again.")
 
-    global board_spaces
+
 
     num_chips_to_distribute = board_spaces[which_bin]
     board_spaces[which_bin] = 0
@@ -231,6 +236,10 @@ def main():
     give_players_pieces_on_their_side_of_the_board()
     draw_board()
     print ("Game over.")
+    print("\033[1;37;0m Press \033[1;31;0m<return> \033[1;37;0m to play again.")
+    input()
+    main()
+
 
 
 
