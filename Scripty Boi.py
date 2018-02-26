@@ -29,6 +29,7 @@ def draw_board():
     print("      1   2   3   4   5   6  P1")
 
 def p1_ply():
+    global board_spaces
     """
     handles one move for player 1
     :return: whether the player gets to go again.
@@ -38,7 +39,10 @@ def p1_ply():
         try:
             which_bin = int(input("Player 1, which bin do you want, 1-6? "))
             if which_bin > 0 and which_bin < 7:
-                good_answer = True
+                if board_spaces[which_bin] != 0:
+                    good_answer = True
+                else:
+                    print("That bin has no chips in it")
             else:
                 print("That is not a legal move.")
         except ValueError:
@@ -48,7 +52,7 @@ def p1_ply():
 
 
 
-    global board_spaces
+
     #    The player has chosen a legal move - a number stored in the variable "which_bin." Put the number of
     #       chips in this space on the board into a new variable, "num_chips_to_distribute," and then empty this space on
     #       the board.
