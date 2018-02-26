@@ -224,6 +224,7 @@ def loop():
 
 
 def main():
+    global board_spaces
     """
     Reset the board, run the primary game loop, and handle the post-game summary.
     :return: None
@@ -235,7 +236,10 @@ def main():
     print ("Reallocating pieces.")
     give_players_pieces_on_their_side_of_the_board()
     draw_board()
-    print ("Game over.")
+    if board_spaces[0] == board_spaces [7]:
+        print("its a draw, you both loose")
+    else:
+        print ("Game over.")
     print("\033[1;37;0m Press \033[1;31;0m<return> \033[1;37;0m to play again.")
     input()
     main()
