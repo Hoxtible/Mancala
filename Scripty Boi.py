@@ -16,7 +16,7 @@ def draw_board():
     #      wide. If it is a single digit number, put a space in front of it. This will ensure that our boxes will look
     #      right, whether they hold single or double digit numbers!
     print("\033[1;37;0m") # blank line
-    print(" P2  13  12  11  10   9   8  ")
+    print("\033[1;32;0m P2\033[1;37;0m  13  12  11  10   9   8  ")
     print("+---+---+---+---+---+---+---+---+")
     print("|   |{0:2d} |{1:2d} |{2:2d} |{3:2d} |{4:2d} |{5:2d} |   |".format(board_spaces[13],board_spaces[12],\
                                                                              board_spaces[11],board_spaces[10],\
@@ -26,7 +26,7 @@ def draw_board():
                                                                              board_spaces[3],board_spaces[4],\
                                                                              board_spaces[5],board_spaces[6]))
     print("+---+---+---+---+---+---+---+---+")
-    print("      1   2   3   4   5   6  P1")
+    print("      1   2   3   4   5   6 \033[1;35;0m P1\033[1;37;0m")
 
 def p1_ply():
     global board_spaces
@@ -37,7 +37,7 @@ def p1_ply():
     good_answer = False
     while not good_answer:
         try:
-            which_bin = int(input("Player 1, which bin do you want, 1-6? "))
+            which_bin = int(input("\033[1;35;0mPlayer 1\033[1;37;0m, which bin do you want, 1-6? "))
             if which_bin > 0 and which_bin < 7:
                 if board_spaces[which_bin] != 0:
                     good_answer = True
@@ -99,7 +99,7 @@ def p2_ply():
     good_answer = False
     while not good_answer:
         try:
-            which_bin = int(input("Player 2, which which_bin do you want, 8-13? "))
+            which_bin = int(input("\033[1;32;0mPlayer 2\033[1;37;0m, which bin do you want, 8-13? "))
             if which_bin > 7 and which_bin < 14:
                 good_answer = True
                 if board_spaces[which_bin] != 0:
