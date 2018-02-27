@@ -238,8 +238,11 @@ def main():
     draw_board()
     if board_spaces[0] == board_spaces [7]:
         print("its a draw, you both loose")
+    elif board_spaces [0] > board_spaces [7]:
+        print("Player 2 Wins")
     else:
-        print ("Game over.")
+        print("Player 1 Wins")
+
     print("\033[1;37;0m Press \033[1;31;0m<return> \033[1;37;0m to play again.")
     input()
     main()
